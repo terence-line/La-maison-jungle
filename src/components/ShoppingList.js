@@ -1,13 +1,13 @@
 import { plantList } from '../datas/plantList'
-import Care from './Care'
 import '../styles/ShoppingList.css'
 
 function ShoppingList() {
     const categories = plantList.reduce(
-        (acc, elem) =>
-            acc.includes(elem.category) ? acc : acc.concat(elem.category),
+        (acc, plant) =>
+            acc.includes(plant.category) ? acc : acc.concat(plant.category),
         []
     )
+
     return (
         <div>
             <ul>
@@ -17,11 +17,9 @@ function ShoppingList() {
             </ul>
             <ul className='lmj-plant-list'>
                 {plantList.map((plant) => (
-                    <li key={plant.id} className='lmj-plant-item'>
-                        {plant.bestSale && <span>🔥</span>}
+                    <li key={plant.id} className='l</li>mj-plant-item'>
                         {plant.name}
-                        <Care careType='water' care={plant.water} />
-                        <Care careType='light' care={plant.light} />
+                        {plant.isSpecialOffer && <div className='lmj-sales'>Soldes</div>}
                     </li>
                 ))}
             </ul>
